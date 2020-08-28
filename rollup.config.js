@@ -33,7 +33,7 @@ export default [{
   input: "src/index.ts",
   output: {
     file: "umd/array-edit-steps.js",
-    name: "diffArr",
+    name: "getEditSteps",
     format: "umd",
     exports: "default",
     sourcemap: true,
@@ -55,7 +55,7 @@ export default [{
   input: "src/index.ts",
   output: {
     file: "umd/array-edit-steps.min.js",
-    name: "diffArr",
+    name: "getEditSteps",
     format: "umd",
     exports: "default",
     sourcemap: true,
