@@ -1,7 +1,7 @@
 {
   "name": "array-edit-steps",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.1.0",
+  "description": "Find the difference between two arrays and compute the minimal steps to transform one array to another.",
   "main": "dist/index.js",
   "files": [
     "dist/**",
