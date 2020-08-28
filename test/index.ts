@@ -32,6 +32,8 @@ function process(original: string, steps: Operation<string>[]): string {
   return arr.join("")
 }
 
+let i = 0
+
 const identical = [
   ["", ""],
   ...Array.from({ length: 9 }).map(() => {
@@ -41,10 +43,10 @@ const identical = [
 ]
 
 describe("Test identical", () => {
-  identical.forEach(([from, to], i) => {
-    it(`test #${i + 1}: "${from}" -> "${to}"`, () => {
+  identical.forEach(([from, to]) => {
+    it(`test #${++i}: "${from}" -> "${to}"`, () => {
       const result = diff(from, to)
-      expect(result).to.be.an("array").that.has.lengthOf(0)
+      expect(result, JSON.stringify(result)).to.be.an("array").that.has.lengthOf(0)
     })
   })
 })
@@ -66,11 +68,11 @@ const reduceOnly = [
 ]
 
 describe("Test delete only", () => {
-  reduceOnly.forEach(([from, to], i) => {
-    it(`test #${i + 1}: "${from}" -> "${to}"`, () => {
+  reduceOnly.forEach(([from, to]) => {
+    it(`test #${++i}: "${from}" -> "${to}"`, () => {
       const result = diff(from, to)
-      expect(result).to.be.an("array").that.has.lengthOf(from.length - to.length)
-      expect(to).equals(process(from, result))
+      expect(result, JSON.stringify(result)).to.be.an("array").that.has.lengthOf(from.length - to.length)
+      expect(to, JSON.stringify(result)).equals(process(from, result))
       result.should.all.have.property("0", "d")
     })
   })
@@ -95,24 +97,24 @@ const editOnly = [
 ]
 
 describe("Test edit only", () => {
-  editOnly.forEach(([from, to], i) => {
-    it(`test #${i + 1}: "${from}" -> "${to}"`, () => {
+  editOnly.forEach(([from, to]) => {
+    it(`test #${++i}: "${from}" -> "${to}"`, () => {
       const result = diff(from, to)
-      expect(result).to.be.an("array")
-      expect(to).equals(process(from, result))
+      expect(result, JSON.stringify(result)).to.be.an("array")
+      expect(to, JSON.stringify(result)).equals(process(from, result))
       result.should.all.have.property("0", "e")
     })
   })
 })
 
 describe("Test random", () => {
-  Array.from({ length: 20 }).map((_, i) => {
+  Array.from({ length: 20 }).map(() => {
     const from = randString()
     const to = randString()
-    it(`test #${i + 1}: "${from}" -> "${to}"`, () => {
+    it(`test #${++i}: "${from}" -> "${to}"`, () => {
       const result = diff(from, to)
-      expect(result).to.be.an("array")
-      expect(to).equals(process(from, result))
+      expect(result, JSON.stringify(result)).to.be.an("array")
+      expect(to, JSON.stringify(result)).equals(process(from, result))
     })
   })
 })

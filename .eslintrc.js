@@ -15,7 +15,7 @@ module.exports = {
   rules: {
     "quotes": ["error", "double"],
     "indent": ["error", 2],
-    "complexity": ["error", 20],
+    "complexity": "off",
     "consistent-return": ["error"],
     "semi": ["error", "never"],
     "semi-style": ["error", "first"],
@@ -66,7 +66,6 @@ module.exports = {
     "multiline-ternary": ["error", "always-multiline"],
     "no-multi-str": ["error"],
     "no-multiple-empty-lines": ["error", { max: 2, maxEOF: 0, maxBOF: 0 }],
-    "no-plusplus": ["error"],
     "no-sequences": ["error"],
   },
   overrides: [
