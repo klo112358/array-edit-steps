@@ -13,8 +13,10 @@ export default [{
   plugins: [
     typescript({
       outDir: "dist",
-      sourceMap: true,
+      rootDir: "src",
+      exclude: "test/**",
       declaration: true,
+      declarationMap: true,
     }),
     babel({
       babelHelpers: "bundled",
@@ -30,17 +32,14 @@ export default [{
 {
   input: "src/index.ts",
   output: {
-    file: "dist/diff-arr.js",
+    file: "umd/array-edit-steps.js",
     name: "diffArr",
     format: "umd",
     exports: "default",
+    sourcemap: true,
   },
   plugins: [
-    typescript({
-      sourceMap: false,
-      declaration: false,
-      declarationMap: false,
-    }),
+    typescript(),
     babel({
       babelHelpers: "bundled",
       extensions: [".js", ".ts"],
@@ -55,17 +54,14 @@ export default [{
 {
   input: "src/index.ts",
   output: {
-    file: "dist/diff-arr.min.js",
+    file: "umd/array-edit-steps.min.js",
     name: "diffArr",
     format: "umd",
     exports: "default",
+    sourcemap: true,
   },
   plugins: [
-    typescript({
-      sourceMap: false,
-      declaration: false,
-      declarationMap: false,
-    }),
+    typescript(),
     babel({
       babelHelpers: "bundled",
       extensions: [".js", ".ts"],

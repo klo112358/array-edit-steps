@@ -1,22 +1,26 @@
 {
-  "name": "diff-arr",
+  "name": "array-edit-steps",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
+  "files": [
+    "dist/**",
+    "umd/**"
+  ],
   "scripts": {
     "build": "rollup --config rollup.config.js",
     "test": "mocha -r ts-node/register test/index.ts"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/klo112358/diff-arr.git"
+    "url": "git+https://github.com/klo112358/array-edit-steps.git"
   },
   "author": "klo112358",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/klo112358/diff-arr/issues"
+    "url": "https://github.com/klo112358/array-edit-steps/issues"
   },
-  "homepage": "https://github.com/klo112358/diff-arr#readme",
+  "homepage": "https://github.com/klo112358/array-edit-steps#readme",
   "devDependencies": {
     "@babel/core": "^7.11.4",
     "@babel/preset-env": "^7.11.0",
@@ -35,5 +39,22 @@
     "rollup-plugin-terser": "^7.0.0",
     "ts-node": "^9.0.0",
     "typescript": "^4.0.2"
-  }
+  },
+  "browserslist": "> 0.25%, not dead",
+  "keywords": [
+    "array",
+    "edit",
+    "steps",
+    "diff",
+    "distance",
+    "match",
+    "matching",
+    "leven",
+    "levenshtein",
+    "difference",
+    "similar",
+    "similarity",
+    "compare",
+    "comparison"
+  ]
 }

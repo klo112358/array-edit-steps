@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "esnext",
+    "sourceMap": true,
     "strict": true,
     "resolveJsonModule": true,
     "noImplicitAny": true,

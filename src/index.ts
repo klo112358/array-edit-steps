@@ -10,10 +10,8 @@ function setDiagMap(diagMap: Record<number, number>, diag: number, row: number):
   }
 }
 
-function diff(from: string, to: string, equals?: (a: string, b: string) => boolean): Operation<string>[]
-function diff<T>(from: T[], to: T[], equals?: (a: T, b: T) => boolean): Operation<T>[]
 function diff<T>(
-  from: T[] | string, to: T[] | string, equals: (a: T | string, b: T | string) => boolean = (a, b): boolean => a === b
+  from: ArrayLike<T>, to: ArrayLike<T>, equals: (a: T, b: T) => boolean = (a, b): boolean => a === b
 ): Operation<T | string>[] {
   const flen = from.length
   const tlen = to.length
@@ -31,9 +29,9 @@ function diff<T>(
       const row = prevDiagMap[diag]
       if (row === undefined) continue
       if (row > flen) continue
-      if (row + diag > tlen) continue
       let i = row
       let j = row + diag
+      if (j > tlen) continue
       map[i * cs + j] = h
       while (i < flen && j < tlen && equals(from[i], to[j])) {
         map[++i * cs + ++j] = h

@@ -59,6 +59,7 @@ const reduceOnly = [
   ["abcd", "ab"],
   ["abcd", "cd"],
   ["abcd", "ad"],
+  ["abcd", "bc"],
   ["abcd", "a"],
   ["abcd", "d"],
   ["abcd", "b"],
@@ -78,6 +79,17 @@ describe("Test delete only", () => {
   })
 })
 
+describe("Test insert only", () => {
+  reduceOnly.forEach(([to, from]) => {
+    it(`test #${++i}: "${from}" -> "${to}"`, () => {
+      const result = diff(from, to)
+      expect(result, JSON.stringify(result)).to.be.an("array").that.has.lengthOf(to.length - from.length)
+      expect(to, JSON.stringify(result)).equals(process(from, result))
+      result.should.all.have.property("0", "i")
+    })
+  })
+})
+
 const editOnly = [
   ["a", "b"],
   ["abcd", "efgh"],
@@ -92,8 +104,8 @@ const editOnly = [
   ["abcd", "eecd"],
   ["abcd", "addd"],
   ["abcddcbaabcd", "abcddcbbbbcd"],
-  ["abcddcbaabcd", "accdccbaadcd"],
-  ["abcddcbaabcd", "accddcdaadcd"],
+  ["abcddcbaabcd", "cccdccbaadcd"],
+  ["abcddcbaabcd", "accddcdaadcc"],
 ]
 
 describe("Test edit only", () => {
