@@ -10,9 +10,15 @@ function setDiagMap(diagMap: Record<number, number>, diag: number, row: number):
   }
 }
 
+interface Options<T> {
+  preferEdit?: boolean
+  equals?: (a: T, b: T) => boolean
+}
+
 function diff<T>(
-  from: ArrayLike<T>, to: ArrayLike<T>, equals: (a: T, b: T) => boolean = (a, b): boolean => a === b
+  from: ArrayLike<T>, to: ArrayLike<T>, options?: Options<T>
 ): Operation<T>[] {
+  const { equals = (a: T, b: T) => a === b, preferEdit = false } = options || {}
   const flen = from.length
   const tlen = to.length
   const cs = tlen + 1
@@ -54,7 +60,7 @@ function diff<T>(
           iv = i > -1
           jv = j > -1
           const d = i * cs + j
-          if (iv && jv) {
+          if (preferEdit && iv && jv) {
             const diagD = map[d]
             if (diagD !== undefined && diagD < distance) {
               distance = diagD
@@ -75,6 +81,14 @@ function diff<T>(
             if (horiD !== undefined && horiD < distance) {
               distance = horiD
               scripts[++k] = ["i", i + 1, to[j--] as T]
+              continue
+            }
+          }
+          if (!preferEdit && iv && jv) {
+            const diagD = map[d]
+            if (diagD !== undefined && diagD < distance) {
+              distance = diagD
+              scripts[++k] = ["e", i--, to[j--] as T]
               continue
             }
           }

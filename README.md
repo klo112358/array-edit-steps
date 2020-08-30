@@ -36,18 +36,21 @@ const steps = getEditSteps(['w', 'x', 'y', 'z'], ['x', 'y', 'u', 'v'])
 // ]
 ```
 
-With `equal` function provided as the third argument:
+With options provided as the third argument:
 
 ```js
 const getEditSteps = require('array-edit-steps')
 
 const steps = getEditSteps(
-  [{ id: 1 }, { id: 3 }],
-  [{ id: 2 }, { id: 3 }],
-  (a, b) => a.id === b.id
+  [{ id: 1 }, { id: 2 }, { id: 3 }],
+  [{ id: 2 }, { id: 1 }, { id: 3 }],
+  {
+    preferEdit: true,                // prefer edit over insert/delete
+    equals: (a, b) => a.id === b.id, // custom equal function
+  }
 )
 
-// steps = [ [ 'e', 0, { id: 2 } ] ]
+// steps = [ [ 'e', 1, { id: 1 } ], [ 'e', 0, { id: 2 } ] ]
 ```
 
 Strings and array-like objects are supported as well.
