@@ -12,7 +12,7 @@ function setDiagMap(diagMap: Record<number, number>, diag: number, row: number):
 
 function diff<T>(
   from: ArrayLike<T>, to: ArrayLike<T>, equals: (a: T, b: T) => boolean = (a, b): boolean => a === b
-): Operation<T | string>[] {
+): Operation<T>[] {
   const flen = from.length
   const tlen = to.length
   const cs = tlen + 1
